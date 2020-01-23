@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>JS Assignment 3</title>
+    </head>
+    
+    <body>
+        <script>
+
+            /* 3. Write a javaScript function that checks whether apassed string is a
+                  palindrome or not? a palindrome is the word, phrase, or sequence that
+                  reads the same backward as forward, e.g., madam, Tibit. */
+
+
+            function palindrome(str) {
+                var string = str.toLowerCase();
+                var len = string.length;
+                var mid = Math.floor(len / 2);
+
+                for (var i= 0; i < mid; i++) {
+                    if (string[i] !== string[len - 1 - i]) {
+                        return false;
+                    }
+                }
+
+                return true;
+
+            }
+            
+            console.log(palindrome("Zeeshan")); // false: Not palindrome
+            console.log(palindrome("madam")); // true: Palindrome
+            console.log(palindrome("Tibit")); // true: palindrome
+            console.log(palindrome("MQM")); // true: Palindrom
+            console.log(palindrome("Dear")); // false: Not Palindrome
+
+        </script>
+    </body>
+</html>

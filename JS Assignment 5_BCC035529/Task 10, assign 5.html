@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>JS Assignment 5, Task 10.</title>
+            <body>
+                <script>
+                    /* 10. Write a JavaScript function that accept string and returns the count
+                           of vowel used within the string. */ 
+
+                           function countVowels(str) {
+                               var vowelsCount = 0;
+                               var string = str.toLowerCase();
+                               for (var i = 0; i < string.length; i++) {
+                                   switch (string.charAt(i)) {
+                                    case "a":
+                                    case "e":
+                                    case "i":
+                                    case "o":
+                                    case "u":
+                                        vowelsCount += 1;
+                                        break
+                                   }
+                               }
+                               console.log(vowelsCount + "Vowels");
+
+
+                           }
+                           countVowels("Syeda"); // 2 vowels
+                           countVowels("PIAIC BLOCK CHAIN"); // 6 vowels
+                           countVowels("The Pakistan is an Islamic country"); //11 vowels
+                           countVowels("Vowels: A, E, I, O, U"); //7 vowels
+                </script>
+            </body>
+        </title>
+    </head>
+</html>
