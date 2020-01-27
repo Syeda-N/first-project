@@ -1,0 +1,78 @@
+
+pragma solidity  >=0.4.0 <0.6.0;
+
+
+contract studentEnrollment {
+
+    address payable private myAddress = 0xaD335c3c503aBd738Af9a7690FB41f9fadcBE91A;
+    
+    enum RegType {onsite, online}
+    enum Gender {male, female}
+    
+    struct Student {
+        string name;
+        uint age;
+        Gender[] gender;
+        bool bsDegree;
+        RegType[] regType;
+    }
+    
+    mapping (address => Student) students;
+    address[] public studentAccts;
+    
+    function EnrollStudent(
+        address _address,
+        string memory _name,
+        uint _age,
+        Gender _gender,
+        bool _degree,
+        RegType _onSiteOnline) public payable {
+            
+        Student storage student = students[_address];
+        
+        student.name = _name;
+        student.age = _age;
+        student.gender.push(_gender);
+        student.regType.push(_onSiteOnline);
+        student.bsDegree = _degree;
+        
+        require(_degree == true, "You must have BS degree");
+        require(msg.value == 2 ether, "You must pay 2 Ether for Registration");
+        myAddress.transfer(msg.value);
+        
+        studentAccts.push(_address) -1;
+        
+        }
+        
+        function getStudents() view public returns(address[] memory) {
+            return studentAccts;
+            
+        }
+        
+        function getSingleStudent(address _address) view public returns (string memory, uint, Gender[] memory, bool, RegType[] memory){
+            return (students[_address].name,
+                    students[_address].age,
+                    students[_address].gender,
+                    students[_address].bsDegree,
+                    students[_address].regType);
+        }
+        
+        function countStudents() view public returns (uint) {
+            return studentAccts.length;
+        }
+        
+        function setAddress(address payable add) public {
+            myAddress = add;
+            
+        }
+        
+        function getBalance() public view returns(uint) {
+            return myAddress.balance;
+        }
+        
+        function getAddress() public view returns(address) {
+            return myAddress;
+        }
+        
+    
+}
